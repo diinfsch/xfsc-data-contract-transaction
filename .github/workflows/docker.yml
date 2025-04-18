@@ -1,0 +1,16 @@
+name: Trigger Remote SBOM Workflow
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+  
+jobs:
+  call-remote-workflow:
+    uses: eclipse-xfsc/dev-ops/.github/workflows/dockerbuild.yml@main
+    secrets:
+      HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
+      HARBOR_OCI: ${{ secrets.HARBOR_OCI }}
+      HARBOR_USERNAME: ${{ secrets.HARBOR_USERNAME }}
+      HARBOR_PROJECT : ${{ secrets.HARBOR_PROJECT }}
+     
